@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fame TG</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .animated-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(90deg, rgba(40,40,40,0.1) 1px, transparent 1px),
+                linear-gradient(rgba(40,40,40,0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+            z-index: -1;
+            pointer-events: none;
+        }
+        
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+        
+        /* CSS Переменные для неона */
+        :root {
+            --neon-color: #ff00ff;
+            --neon-intensity: 5;
+            --neon-blur: 15px;
+        }
+        
+        /* Эффект переливания с использованием переменных */
+        @keyframes neonFlow {
+            0%, 100% { 
+                box-shadow: 
+                    0 0 calc(var(--neon-blur) * 1) var(--neon-color),
+                    0 0 calc(var(--neon-blur) * 2) var(--neon-color),
+                    0 0 calc(var(--neon-blur) * 3) var(--neon-color),
+                    inset 0 0 calc(var(--neon-blur) * 1) var(--neon-color); 
+            }
+            50% { 
+                box-shadow: 
+                    0 0 calc(var(--neon-blur) * 1.5) var(--neon-color),
+                    0 0 calc(var(--neon-blur) * 2.5) var(--neon-color),
+                    0 0 calc(var(--neon-blur) * 3.5) var(--neon-color),
+                    inset 0 0 calc(var(--neon-blur) * 1.5) var(--neon-color); 
+            }
+        }
+        
+        @keyframes textNeonFlow {
+            0%, 100% { 
+                text-shadow: 
+                    0 0 calc(5px * var(--neon-intensity) / 5) var(--neon-color),
+                    0 0 calc(10px * var(--neon-intensity) / 5) var(--neon-color); 
+            }
+            50% { 
+                text-shadow: 
+                    0 0 calc(8px * var(--neon-intensity) / 5) var(--neon-color),
+                    0 0 calc(15px * var(--neon-intensity) / 5) var(--neon-color); 
+            }
+        }
+        
+        .neon-flow {
+            animation: neonFlow 2s ease-in-out infinite;
+        }
+        
+        .text-neon-flow {
+            animation: textNeonFlow 2s ease-in-out infinite;
+        }
+        
+        /* Класс для неоновых элементов с настраиваемым цветом */
+        .neon-element {
+            border-color: var(--neon-color) !important;
+            box-shadow: 0 0 10px var(--neon-color) !important;
+        }
+        
+        .neon-text {
+            text-shadow: 0 0 5px var(--neon-color) !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Анимированная сетка -->
+    <div class="animated-grid"></div>
+    
+    <!-- Снег -->
+    <div class="snow-container"></div>
+
+    <!-- Верхнее меню -->
+    <nav class="top-nav">
+        <div class="nav-left">
+            <button class="menu-btn" id="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <h1 class="logo text-neon-flow neon-text">Fame TG</h1>
+        </div>
+        <div class="nav-center">
+            <button class="nav-tab active neon-element" data-section="main">Главная</button>
+            <a href="https://t.me/+UO-WJgp_j65iYjA6" class="nav-tab channel-link neon-element" target="_blank">
+                <i class="fab fa-telegram"></i> Мой канал
+            </a>
+        </div>
+        <div class="nav-right">
+            <button class="nav-icon" id="faq-btn" title="FAQ">
+                <i class="fas fa-question-circle"></i>
+            </button>
+            <button class="nav-icon" id="settings-btn" title="Настройки">
+                <i class="fas fa-cog"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Боковое меню -->
+    <div class="side-menu" id="side-menu">
+        <div class="menu-header">
+            <h3 class="neon-text">Меню</h3>
+            <button class="close-menu" id="close-menu">&times;</button>
+        </div>
+        <div class="menu-items">
+            <a href="#main" class="menu-item active" data-section="main">
+                <i class="fas fa-home"></i> Главная
+            </a>
+            <a href="#faq" class="menu-item">
+                <i class="fas fa-question-circle"></i> FAQ
+            </a>
+            <button class="menu-item" id="menu-settings">
+                <i class="fas fa-sliders-h"></i> Настройки
+            </button>
+        </div>
+    </div>
+
+    <!-- Главная страница -->
+    <section id="main" class="section active-section">
+        <div class="container">
+            <div class="search-container neon-element">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="search-input" placeholder="Поиск по имени, описанию..." class="neon-element">
+                </div>
+                <div class="filter-buttons">
+                    <button class="filter-btn active neon-element" data-category="all">Все</button>
+                    <button class="filter-btn neon-element" data-category="Медийки">Медийки</button>
+                    <button class="filter-btn neon-element" data-category="Фейм">Фейм</button>
+                    <button class="filter-btn neon-element" data-category="Средний">Средний</button>
+                    <button class="filter-btn neon-element" data-category="Малый">Малый</button>
+                    <button class="filter-btn neon-element" data-category="Кодеры">Кодеры</button>
+                    <button class="filter-btn neon-element" data-category="Дизайнеры">Дизайнеры</button>
+                    <button class="filter-btn neon-element" data-category="Эдиторы">Эдиторы</button>
+                </div>
+            </div>
+
+            <div class="members-grid" id="members-container">
+                <!-- Участники загружаются через JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Детали профиля -->
+    <section id="profile-details" class="section">
+        <div class="container" id="profile-content">
+            <!-- Контент загружается через JS -->
+        </div>
+    </section>
+
+    <!-- FAQ секция -->
+    <section id="faq-section" class="section">
+        <div class="container">
+            <div class="faq-content neon-element">
+                <h2 class="text-neon-flow neon-text">FAQ</h2>
+                <p>По всем вопросам обращайтесь:</p>
+                <a href="https://t.me/nothevo" class="profile-link neon-element" target="_blank">
+                    <i class="fab fa-telegram"></i> @nothevo
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Модальное окно настроек -->
+    <div class="modal" id="settings-modal">
+        <div class="modal-content neon-flow">
+            <div class="modal-header">
+                <h2 class="text-neon-flow neon-text"><i class="fas fa-sliders-h"></i> Настройки</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            
+            <div class="settings-tabs">
+                <button class="settings-tab active" data-tab="theme">Тема</button>
+                <button class="settings-tab" data-tab="background">Фон</button>
+                <button class="settings-tab" data-tab="effects">Эффекты</button>
+                <button class="settings-tab" data-tab="neon">Неон</button>
+            </div>
+            
+            <div class="settings-content">
+                <!-- Тема оформления -->
+                <div class="tab-content active" id="theme-tab">
+                    <h3 class="neon-text">Тема оформления</h3>
+                    <div class="theme-grid">
+                        <div class="theme-option active" data-theme="dark">
+                            <div class="theme-preview dark-theme"></div>
+                            <span>Темная</span>
+                        </div>
+                        <div class="theme-option" data-theme="black">
+                            <div class="theme-preview black-theme"></div>
+                            <span>Черная</span>
+                        </div>
+                        <div class="theme-option" data-theme="red">
+                            <div class="theme-preview red-theme"></div>
+                            <span>Красная</span>
+                        </div>
+                        <div class="theme-option" data-theme="red-black">
+                            <div class="theme-preview red-black-theme"></div>
+                            <span>Красно-черная</span>
+                        </div>
+                        <div class="theme-option" data-theme="red-gray">
+                            <div class="theme-preview red-gray-theme"></div>
+                            <span>Красно-серая</span>
+                        </div>
+                        <div class="theme-option" data-theme="purple">
+                            <div class="theme-preview purple-theme"></div>
+                            <span>Фиолетовая</span>
+                        </div>
+                        <div class="theme-option" data-theme="blue">
+                            <div class="theme-preview blue-theme"></div>
+                            <span>Синяя</span>
+                        </div>
+                        <div class="theme-option" data-theme="green">
+                            <div class="theme-preview green-theme"></div>
+                            <span>Зеленая</span>
+                        </div>
+                        <div class="theme-option" data-theme="orange">
+                            <div class="theme-preview orange-theme"></div>
+                            <span>Оранжевая</span>
+                        </div>
+                        <div class="theme-option" data-theme="pink">
+                            <div class="theme-preview pink-theme"></div>
+                            <span>Розовая</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Фон -->
+                <div class="tab-content" id="background-tab">
+                    <h3 class="neon-text">Фон главной страницы</h3>
+                    
+                    <div class="hacker-bg-grid">
+                        <h4 class="neon-text">Хакерские фоны (популярные)</h4>
+                        <div class="hacker-bg-options">
+                            <div class="hacker-bg-option" data-url="https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80">
+                                <div class="hacker-bg-preview" style="background-image: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80')"></div>
+                                <span>Матрица</span>
+                            </div>
+                            <div class="hacker-bg-option" data-url="https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80">
+                                <div class="hacker-bg-preview" style="background-image: url('https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80')"></div>
+                                <span>Киберпанк</span>
+                            </div>
+                            <div class="hacker-bg-option" data-url="https://images.unsplash.com/photo-1535223289827-42f1e9919769?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80">
+                                <div class="hacker-bg-preview" style="background-image: url('https://images.unsplash.com/photo-1535223289827-42f1e9919769?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80')"></div>
+                                <span>Код</span>
+                            </div>
+                            <div class="hacker-bg-option" data-url="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80">
+                                <div class="hacker-bg-preview" style="background-image: url('https://images.unsplash.com/photo-1516035069371-29a1b244cc32?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80')"></div>
+                                <span>Схема</span>
+                            </div>
+                            <div class="hacker-bg-option" data-url="https://images.unsplash.com/photo-1552820728-8b83bb6b773f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80">
+                                <div class="hacker-bg-preview" style="background-image: url('https://images.unsplash.com/photo-1552820728-8b83bb6b773f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80')"></div>
+                                <span>Неоновая сеть</span>
+                            </div>
+                            <div class="hacker-bg-option" data-url="https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80">
+                                <div class="hacker-bg-preview" style="background-image: url('https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80')"></div>
+                                <span>Программирование</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="background-upload">
+                        <p>Или загрузите свой фон:</p>
+                        <input type="file" id="bg-upload" accept="image/*" style="display: none;">
+                        <label for="bg-upload" class="upload-btn neon-element">
+                            <i class="fas fa-image"></i> Выбрать изображение
+                        </label>
+                        <div id="bg-preview" class="bg-preview"></div>
+                    </div>
+                </div>
+                
+                <!-- Эффекты -->
+                <div class="tab-content" id="effects-tab">
+                    <h3 class="neon-text">Эффекты</h3>
+                    <div class="effect-option">
+                        <div class="effect-info">
+                            <h4 class="neon-text"><i class="fas fa-snowflake"></i> Снег</h4>
+                            <p>Падающий снег на всём сайте</p>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="snow-effect" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <div class="effect-option">
+                        <div class="effect-info">
+                            <h4 class="neon-text"><i class="fas fa-palette"></i> Эффект переливания</h4>
+                            <p>Анимированное переливание неона</p>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="neon-flow-effect" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+                
+                <!-- Настройка неона -->
+                <div class="tab-content" id="neon-tab">
+                    <h3 class="neon-text">Настройка неона</h3>
+                    
+                    <div class="neon-controls">
+                        <div class="neon-control-group">
+                            <h4 class="neon-text"><i class="fas fa-palette"></i> Цвет неона</h4>
+                            <p>Выберите основной цвет неонового свечения</p>
+                            <input type="color" id="neon-color-picker" value="#ff00ff" class="neon-color-picker">
+                            <div class="color-presets">
+                                <button class="color-preset" data-color="#ff0000" style="background-color: #ff0000;"></button>
+                                <button class="color-preset" data-color="#00ff00" style="background-color: #00ff00;"></button>
+                                <button class="color-preset" data-color="#0000ff" style="background-color: #0000ff;"></button>
+                                <button class="color-preset" data-color="#ffff00" style="background-color: #ffff00;"></button>
+                                <button class="color-preset" data-color="#ff00ff" style="background-color: #ff00ff;"></button>
+                                <button class="color-preset" data-color="#00ffff" style="background-color: #00ffff;"></button>
+                                <button class="color-preset" data-color="#ff8800" style="background-color: #ff8800;"></button>
+                                <button class="color-preset" data-color="#aa00ff" style="background-color: #aa00ff;"></button>
+                            </div>
+                        </div>
+                        
+                        <div class="neon-control-group">
+                            <h4 class="neon-text"><i class="fas fa-sliders-h"></i> Интенсивность неона</h4>
+                            <p>Регулировка яркости и размытия свечения</p>
+                            <div class="slider-container">
+                                <input type="range" id="neon-intensity-slider" min="1" max="10" value="5" class="neon-slider">
+                                <span id="intensity-value" class="neon-text">5</span>
+                            </div>
+                        </div>
+                        
+                        <div class="neon-control-group">
+                            <h4 class="neon-text"><i class="fas fa-expand-alt"></i> Размытие неона</h4>
+                            <p>Настройка размера размытия свечения</p>
+                            <div class="slider-container">
+                                <input type="range" id="neon-blur-slider" min="5" max="30" value="15" class="neon-slider">
+                                <span id="blur-value" class="neon-text">15px</span>
+                            </div>
+                        </div>
+                        
+                        <div class="neon-preview">
+                            <h4 class="neon-text">Предпросмотр:</h4>
+                            <div class="preview-box neon-flow neon-element">
+                                <p class="neon-text">Пример текста с неоном</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
