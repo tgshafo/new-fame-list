@@ -1,0 +1,422 @@
+/* ... (весь предыдущий CSS остается) ... */
+
+/* Новые стили для хакерских фонов */
+.hacker-bg-grid {
+    margin: 20px 0;
+}
+
+.hacker-bg-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 15px;
+    margin: 15px 0;
+}
+
+.hacker-bg-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+    border: 2px solid transparent;
+}
+
+.hacker-bg-option:hover, .hacker-bg-option.active {
+    border-color: var(--neon-color);
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-5px);
+    box-shadow: 0 0 15px var(--neon-color);
+}
+
+.hacker-bg-preview {
+    width: 100%;
+    height: 100px;
+    border-radius: 8px;
+    background-size: cover;
+    background-position: center;
+    border: 2px solid #333;
+    transition: all 0.3s;
+}
+
+.hacker-bg-option:hover .hacker-bg-preview {
+    border-color: var(--neon-color);
+}
+
+.hacker-bg-option span {
+    color: #aaa;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+/* Настройка неона */
+.neon-controls {
+    margin-top: 20px;
+}
+
+.neon-control-group {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    border: 1px solid #333;
+}
+
+.neon-control-group h4 {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.neon-control-group p {
+    color: #888;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+}
+
+.neon-color-picker {
+    width: 100%;
+    height: 40px;
+    border-radius: 8px;
+    border: 2px solid #333;
+    background: #1a1a1a;
+    cursor: pointer;
+    margin-bottom: 15px;
+}
+
+.color-presets {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.color-preset {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 2px solid #333;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.color-preset:hover {
+    transform: scale(1.1);
+    border-color: #fff;
+}
+
+.slider-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.neon-slider {
+    flex: 1;
+    height: 10px;
+    -webkit-appearance: none;
+    background: #1a1a1a;
+    border-radius: 5px;
+    border: 1px solid #333;
+    outline: none;
+}
+
+.neon-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    background: var(--neon-color);
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid #fff;
+    box-shadow: 0 0 10px var(--neon-color);
+}
+
+#intensity-value, #blur-value {
+    min-width: 40px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.neon-preview {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 20px;
+    border: 1px solid #333;
+}
+
+.preview-box {
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    margin-top: 15px;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+/* Улучшенные профили */
+.profile-header {
+    background: rgba(25, 25, 25, 0.95);
+    border-radius: 20px;
+    padding: 40px;
+    margin-bottom: 30px;
+    border: 1px solid var(--neon-color);
+    box-shadow: 0 0 30px var(--neon-color);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.profile-avatar-large {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: #2a2a2a;
+    margin-bottom: 25px;
+    overflow: hidden;
+    border: 4px solid var(--neon-color);
+    box-shadow: 0 0 20px var(--neon-color);
+}
+
+.profile-avatar-large img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-title-large {
+    color: #fff;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    text-shadow: 0 0 10px var(--neon-color);
+}
+
+.profile-username {
+    color: var(--neon-color);
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.profile-badges {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.profile-stats {
+    display: flex;
+    gap: 30px;
+    margin: 25px 0;
+    justify-content: center;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px 25px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    border: 1px solid #333;
+    min-width: 100px;
+}
+
+.stat-value {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--neon-color);
+    text-shadow: 0 0 5px var(--neon-color);
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: #aaa;
+    margin-top: 5px;
+}
+
+.profile-details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.profile-detail-card {
+    background: rgba(25, 25, 25, 0.95);
+    border-radius: 15px;
+    padding: 25px;
+    border: 1px solid #333;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+}
+
+.profile-detail-card h4 {
+    color: var(--neon-color);
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.detail-item {
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #333;
+}
+
+.detail-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.detail-label {
+    color: #aaa;
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+}
+
+.detail-value {
+    color: #fff;
+    font-size: 1.1rem;
+}
+
+.profile-social-links {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+    justify-content: center;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: all 0.3s;
+    border: 1px solid #333;
+}
+
+.social-link:hover {
+    background: var(--neon-color);
+    transform: translateY(-5px);
+    box-shadow: 0 0 15px var(--neon-color);
+}
+
+/* Улучшенные кнопки действий */
+.profile-actions {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+    justify-content: center;
+}
+
+.action-btn {
+    padding: 15px 30px;
+    background: linear-gradient(45deg, transparent, rgba(255, 0, 255, 0.2));
+    border: 2px solid var(--neon-color);
+    border-radius: 25px;
+    color: #fff;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s;
+    font-size: 1rem;
+    font-weight: bold;
+    text-shadow: 0 0 5px var(--neon-color);
+    box-shadow: 0 0 15px var(--neon-color);
+}
+
+.action-btn:hover {
+    background: var(--neon-color);
+    transform: translateY(-5px);
+    box-shadow: 0 0 25px var(--neon-color);
+}
+
+.action-btn.telegram {
+    background: linear-gradient(45deg, #0088cc, #00aaff);
+    border-color: #0088cc;
+    box-shadow: 0 0 15px #0088cc;
+}
+
+.action-btn.telegram:hover {
+    background: #0088cc;
+    box-shadow: 0 0 25px #0088cc;
+}
+
+/* Адаптивность для новых элементов */
+@media (max-width: 768px) {
+    .hacker-bg-options {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .profile-title-large {
+        font-size: 1.8rem;
+    }
+    
+    .profile-stats {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+    
+    .stat-item {
+        min-width: 80px;
+        padding: 10px 15px;
+    }
+    
+    .profile-details-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .profile-actions {
+        flex-direction: column;
+    }
+    
+    .action-btn {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .neon-control-group {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hacker-bg-options {
+        grid-template-columns: 1fr;
+    }
+    
+    .profile-avatar-large {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .profile-title-large {
+        font-size: 1.5rem;
+    }
+    
+    .color-presets {
+        justify-content: center;
+    }
+}
